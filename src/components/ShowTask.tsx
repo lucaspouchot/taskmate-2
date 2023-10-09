@@ -1,5 +1,6 @@
 import './showTask.css';
 import { TaskInterface } from "../interfaces/task.interface";
+import TaskCard from "./TaskCard";
 
 type Props = {
   taskList: TaskInterface[];
@@ -30,14 +31,7 @@ export default function ShowTask(props: Props) {
       </div>
       <ul>
         { props.taskList.map((task) => (
-          <li key={task.id}>
-            <p>
-              <span className="name">{task.name}</span>
-              <span className="time">{task.time}</span>
-            </p>
-            <i onClick={() => handleEdit(task.id)} className="bi bi-pencil-square"></i>
-            <i onClick={() => handleDelete(task.id)} className="bi bi-trash"></i>
-          </li>
+          <TaskCard key={task.id} item={task} onEdit={(id) => handleEdit(id)} onDelete={(id) => handleDelete(id)}/>
         )) }
       </ul>
     </section>
